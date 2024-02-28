@@ -119,66 +119,47 @@ public class BlueFar extends LinearOpMode {
         //start button just pressed
         if (locationOfProp == 1) {
             TrajectorySequence leftTraj1 = drive.trajectorySequenceBuilder(new Pose2d(-34, 60, Math.toRadians(270)))
-                    .lineToLinearHeading(new Pose2d(-25, 30, Math.toRadians(180)))
+                    .lineToLinearHeading(new Pose2d(-42, 30, Math.toRadians(180)))
+                    .addTemporalMarker(()-> openRightClaw())
                     .waitSeconds(1)
-                    .addTemporalMarker(() -> openRightClaw()) //open whichever claw has the purple pixel
-                    .lineToConstantHeading(new Vector2d(48,32))
+                    .lineToLinearHeading(new Pose2d(-34, 10, Math.toRadians(0)))
+                    .waitSeconds(1)
+                    .lineToLinearHeading(new Pose2d(55, 10, Math.toRadians(0)))
+                    .waitSeconds(1)
+                    .lineToConstantHeading(new Vector2d(55, 42))
+                    .addTemporalMarker(()-> openSwivel())
                     .build();
             drive.followTrajectorySequence(leftTraj1);
-
-            alignWithAprilTag(BLUE_ALLIANCE_LEFT);
-
-            TrajectorySequence leftTraj2 = drive.trajectorySequenceBuilder(leftTraj1.end())
-                    .addTemporalMarker(() -> openSwivel())
-                    .waitSeconds(2)
-                    .back(4)
-                    .lineToConstantHeading(new Vector2d(48, 12))
-                    .lineToConstantHeading(new Vector2d(60, 12))
-                    .build();
-            drive.followTrajectorySequence(leftTraj2);
-
         }
 
         if(locationOfProp == 2) {
-            TrajectorySequence midTraj1 = drive.trajectorySequenceBuilder(new Pose2d(-34,60, Math.toRadians(270)))
-                    .lineTo(new Vector2d(-34, 18))
+            TrajectorySequence midTraj1 = drive.trajectorySequenceBuilder(new Pose2d(-34, 60, Math.toRadians(270)))
+                    .lineToLinearHeading(new Pose2d(-34, 19, Math.toRadians(90)))
+                    .addTemporalMarker(()-> openRightClaw())
                     .waitSeconds(1)
-                    .addTemporalMarker(() -> openRightClaw())
-                    .lineToLinearHeading(new Pose2d(48, 32, Math.toRadians(180)))
+                    .lineToLinearHeading(new Pose2d(-34, 10, Math.toRadians(0)))
+                    .waitSeconds(1)
+                    .lineToLinearHeading(new Pose2d(55, 10, Math.toRadians(0)))
+                    .waitSeconds(1)
+                    .lineToConstantHeading(new Vector2d(55, 35))
+                    .addTemporalMarker(()-> openSwivel())
                     .build();
             drive.followTrajectorySequence(midTraj1);
-
-            alignWithAprilTag(BLUE_ALLIANCE_CENTER);
-
-            TrajectorySequence midTraj2 = drive.trajectorySequenceBuilder(midTraj1.end())
-                    .addTemporalMarker(() -> openSwivel())
-                    .waitSeconds(2)
-                    .back(4)
-                    .lineToConstantHeading(new Vector2d(48, 12))
-                    .lineToConstantHeading(new Vector2d(60, 12))
-                    .build();
-            drive.followTrajectorySequence(midTraj2);
         }
 
         if(locationOfProp == 3) {
             TrajectorySequence rightTraj1 = drive.trajectorySequenceBuilder(new Pose2d(-34, 60, Math.toRadians(270)))
-                    .lineToLinearHeading(new Pose2d(-48, 30, Math.toRadians(180)))
+                    .lineToLinearHeading(new Pose2d(-27, 30, Math.toRadians(0)))
+                    .addTemporalMarker(()-> openRightClaw())
                     .waitSeconds(1)
-                    .addTemporalMarker(() -> openRightClaw())
-                    .lineToConstantHeading(new Vector2d(48, 28))
+                    .lineToLinearHeading(new Pose2d(-34, 10, Math.toRadians(0)))
+                    .waitSeconds(1)
+                    .lineToLinearHeading(new Pose2d(55, 10, Math.toRadians(0)))
+                    .waitSeconds(1)
+                    .lineToConstantHeading(new Vector2d(55, 29))
+                    .addTemporalMarker(()-> openSwivel())
                     .build();
             drive.followTrajectorySequence(rightTraj1);
-
-            alignWithAprilTag(BLUE_ALLIANCE_RIGHT);
-
-            TrajectorySequence rightTraj2 = drive.trajectorySequenceBuilder(rightTraj1.end())
-                    .addTemporalMarker(() -> openSwivel())
-                    .waitSeconds(2)
-                    .back(4)
-                    .lineToConstantHeading(new Vector2d(48, 12))
-                    .lineToConstantHeading(new Vector2d(60, 12))
-                    .build();
-            drive.followTrajectorySequence(rightTraj2);
         }
 
         // The OpenCV pipeline automatically processes frames and handles detection
@@ -226,21 +207,6 @@ public class BlueFar extends LinearOpMode {
         }
     }
 
-//    private void initOpenCV() {
-//
-//        // Create an instance of the camera
-//        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
-//                "cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
-//
-//        // Use OpenCvCameraFactory class from FTC SDK to create camera instance
-//        controlHubCam = OpenCvCameraFactory.getInstance().createWebcam(
-//                hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewId);
-//
-//        controlHubCam.setPipeline(new BlueClose.BlueDetectionPipeline());
-//
-//        controlHubCam.openCameraDevice();
-//        controlHubCam.startStreaming(CAMERA_WIDTH, CAMERA_HEIGHT, OpenCvCameraRotation.UPRIGHT);
-//    }
 
     private void initVision() {
         blueDetectionProcessor = new BlueDetectionProcessor();
