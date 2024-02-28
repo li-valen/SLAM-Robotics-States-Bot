@@ -124,21 +124,22 @@ public class BlueClose extends LinearOpMode {
 
         if(locationOfProp == 2) {
             TrajectorySequence midTraj1 = drive.trajectorySequenceBuilder(new Pose2d(12, 60, Math.toRadians(270)))
-                    .lineToLinearHeading(new Pose2d(3, 30, Math.toRadians(180)))
+                    .lineToLinearHeading(new Pose2d(12, 28, Math.toRadians(270)))
                     .addTemporalMarker(()-> openRightClaw())
                     .waitSeconds(1)
-                    .lineToLinearHeading(new Pose2d(55, 29, Math.toRadians(0)))
+                    .lineToLinearHeading(new Pose2d(55, 35, Math.toRadians(0)))
                     .addTemporalMarker(()-> openSwivel())
                     .build();
+
             drive.followTrajectorySequence(midTraj1);
         }
 
         if(locationOfProp == 3) {
             TrajectorySequence rightTraj1 = drive.trajectorySequenceBuilder(new Pose2d(12, 60, Math.toRadians(270)))
-                    .lineToLinearHeading(new Pose2d(12, 28, Math.toRadians(270)))
+                    .lineToLinearHeading(new Pose2d(3, 30, Math.toRadians(180)))
                     .addTemporalMarker(()-> openRightClaw())
                     .waitSeconds(1)
-                    .lineToLinearHeading(new Pose2d(55, 35, Math.toRadians(0)))
+                    .lineToLinearHeading(new Pose2d(55, 29, Math.toRadians(0)))
                     .addTemporalMarker(()-> openSwivel())
                     .build();
             drive.followTrajectorySequence(rightTraj1);

@@ -119,14 +119,14 @@ public class BlueFar extends LinearOpMode {
         //start button just pressed
         if (locationOfProp == 1) {
             TrajectorySequence leftTraj1 = drive.trajectorySequenceBuilder(new Pose2d(-34, 60, Math.toRadians(270)))
-                    .lineToLinearHeading(new Pose2d(-42, 30, Math.toRadians(180)))
+                    .lineToLinearHeading(new Pose2d(-27, 30, Math.toRadians(0)))
                     .addTemporalMarker(()-> openRightClaw())
                     .waitSeconds(1)
                     .lineToLinearHeading(new Pose2d(-34, 10, Math.toRadians(0)))
                     .waitSeconds(1)
                     .lineToLinearHeading(new Pose2d(55, 10, Math.toRadians(0)))
                     .waitSeconds(1)
-                    .lineToConstantHeading(new Vector2d(55, 42))
+                    .lineToConstantHeading(new Vector2d(55, 29))
                     .addTemporalMarker(()-> openSwivel())
                     .build();
             drive.followTrajectorySequence(leftTraj1);
@@ -149,14 +149,14 @@ public class BlueFar extends LinearOpMode {
 
         if(locationOfProp == 3) {
             TrajectorySequence rightTraj1 = drive.trajectorySequenceBuilder(new Pose2d(-34, 60, Math.toRadians(270)))
-                    .lineToLinearHeading(new Pose2d(-27, 30, Math.toRadians(0)))
+                    .lineToLinearHeading(new Pose2d(-42, 30, Math.toRadians(180)))
                     .addTemporalMarker(()-> openRightClaw())
                     .waitSeconds(1)
                     .lineToLinearHeading(new Pose2d(-34, 10, Math.toRadians(0)))
                     .waitSeconds(1)
                     .lineToLinearHeading(new Pose2d(55, 10, Math.toRadians(0)))
                     .waitSeconds(1)
-                    .lineToConstantHeading(new Vector2d(55, 29))
+                    .lineToConstantHeading(new Vector2d(55, 42))
                     .addTemporalMarker(()-> openSwivel())
                     .build();
             drive.followTrajectorySequence(rightTraj1);
