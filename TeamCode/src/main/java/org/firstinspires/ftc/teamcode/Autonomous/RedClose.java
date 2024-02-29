@@ -112,12 +112,15 @@ public class RedClose extends LinearOpMode {
         //start button just pressed
         if (locationOfProp == 1) {
             TrajectorySequence leftTraj1 = drive.trajectorySequenceBuilder(new Pose2d(12, -60, Math.toRadians(90)))
-                    .lineToLinearHeading(new Pose2d(3, -30, Math.toRadians(180)))
+                    .lineToLinearHeading(new Pose2d(12, -30, Math.toRadians(180)))
+                    .lineToLinearHeading(new Pose2d(3, -32, Math.toRadians(180)))
                     .addTemporalMarker(()-> openRightClaw())
                     .waitSeconds(1)
                     .lineToLinearHeading(new Pose2d(55, -29, Math.toRadians(0)))
                     .addTemporalMarker(()-> openSwivel())
-                    .build();
+                    .waitSeconds(1)
+                    .lineToConstantHeading(new Vector2d(55, -62))
+                    .build()
             drive.followTrajectorySequence(leftTraj1);
         }
 
@@ -128,7 +131,9 @@ public class RedClose extends LinearOpMode {
                     .waitSeconds(1)
                     .lineToLinearHeading(new Pose2d(55, -35, Math.toRadians(0)))
                     .addTemporalMarker(()-> openSwivel())
-                    .build();
+                    .waitSeconds(1)
+                    .lineToConstantHeading(new Vector2d(55, -62))
+                    .build()
             drive.followTrajectorySequence(midTraj1);
         }
 
@@ -139,7 +144,9 @@ public class RedClose extends LinearOpMode {
                     .waitSeconds(1)
                     .lineToLinearHeading(new Pose2d(55, -42, Math.toRadians(0)))
                     .addTemporalMarker(()-> openSwivel())
-                    .build();
+                    .waitSeconds(1)
+                    .lineToConstantHeading(new Vector2d(55, -62))
+                    .build()
             drive.followTrajectorySequence(rightTraj1);
         }
 

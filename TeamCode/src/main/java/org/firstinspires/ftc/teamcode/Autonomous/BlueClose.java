@@ -115,10 +115,12 @@ public class BlueClose extends LinearOpMode {
         if (locationOfProp == 1) {
             TrajectorySequence leftTraj1 = drive.trajectorySequenceBuilder(new Pose2d(12, 60, Math.toRadians(270)))
                     .lineToLinearHeading(new Pose2d(27, 30, Math.toRadians(180)))
-                    .addTemporalMarker(()-> openRightClaw())
                     .waitSeconds(1)
+                    .addTemporalMarker(()-> openRightClaw())
                     .lineToLinearHeading(new Pose2d(55,42, Math.toRadians(0)))
                     .addTemporalMarker(()-> openSwivel())
+                    .waitSeconds(1)
+                    .lineToConstantHeading(new Vector2d(55, 60))
                     .build();
             drive.followTrajectorySequence(leftTraj1);
         }
@@ -130,6 +132,8 @@ public class BlueClose extends LinearOpMode {
                     .waitSeconds(1)
                     .lineToLinearHeading(new Pose2d(55, 35, Math.toRadians(0)))
                     .addTemporalMarker(()-> openSwivel())
+                    .waitSeconds(1)
+                    .lineToConstantHeading(new Vector2d(55, 60))
                     .build();
 
             drive.followTrajectorySequence(midTraj1);
@@ -137,11 +141,15 @@ public class BlueClose extends LinearOpMode {
 
         if(locationOfProp == 3) {
             TrajectorySequence rightTraj1 = drive.trajectorySequenceBuilder(new Pose2d(12, 60, Math.toRadians(270)))
-                    .lineToLinearHeading(new Pose2d(3, 30, Math.toRadians(180)))
+                    .lineToLinearHeading(new Pose2d(12, 32, Math.toRadians(180)))
+                    .waitSeconds(1)
+                    .lineToLinearHeading(new Pose2d(3, 32, Math.toRadians(180)))
                     .addTemporalMarker(()-> openRightClaw())
                     .waitSeconds(1)
                     .lineToLinearHeading(new Pose2d(55, 29, Math.toRadians(0)))
                     .addTemporalMarker(()-> openSwivel())
+                    .waitSeconds(1)
+                    .lineToConstantHeading(new Vector2d(55, 60))
                     .build();
             drive.followTrajectorySequence(rightTraj1);
         }

@@ -120,12 +120,12 @@ public class RedFar extends LinearOpMode {
                     .addTemporalMarker(()-> openRightClaw())
                     .waitSeconds(1)
                     .lineToLinearHeading(new Pose2d(-34, -10, Math.toRadians(0)))
-                    .waitSeconds(1)
+                    .waitSeconds(5)
                     .lineToLinearHeading(new Pose2d(55, -10, Math.toRadians(0)))
                     .waitSeconds(1)
                     .lineToConstantHeading(new Vector2d(55, -29))
                     .addTemporalMarker(()-> openSwivel())
-                    .build();
+                    .build()
             drive.followTrajectorySequence(leftTraj1);
         }
 
@@ -135,7 +135,7 @@ public class RedFar extends LinearOpMode {
                     .addTemporalMarker(()-> openRightClaw())
                     .waitSeconds(1)
                     .lineToLinearHeading(new Pose2d(-34, -10, Math.toRadians(0)))
-                    .waitSeconds(1)
+                    .waitSeconds(5)
                     .lineToLinearHeading(new Pose2d(55, -10, Math.toRadians(0)))
                     .waitSeconds(1)
                     .lineToConstantHeading(new Vector2d(55, -35))
@@ -146,16 +146,18 @@ public class RedFar extends LinearOpMode {
 
         if(locationOfProp == 3) {
             TrajectorySequence rightTraj1 = drive.trajectorySequenceBuilder(new Pose2d(-34, -60, Math.toRadians(90)))
-                    .lineToLinearHeading(new Pose2d(-27, -30, Math.toRadians(0)))
+                    .lineToLinearHeading(new Pose2d(-34, -32, Math.toRadians(0)))
+                    .waitSeconds(1)
+                    .lineToLinearHeading(new Pose2d(-27, -32, Math.toRadians(0)))
                     .addTemporalMarker(()-> openRightClaw())
                     .waitSeconds(1)
                     .lineToLinearHeading(new Pose2d(-34, -10, Math.toRadians(0)))
-                    .waitSeconds(1)
+                    .waitSeconds(5)
                     .lineToLinearHeading(new Pose2d(55, -10, Math.toRadians(0)))
                     .waitSeconds(1)
                     .lineToConstantHeading(new Vector2d(55, -42))
                     .addTemporalMarker(()-> openSwivel())
-                    .build();
+                    .build()
             drive.followTrajectorySequence(rightTraj1);
         }
 

@@ -26,6 +26,7 @@ public class MeepMeepTesting {
                                 .lineToLinearHeading(new Pose2d(-42, 30, Math.toRadians(180)))
                                 .waitSeconds(1)
                                 .lineToLinearHeading(new Pose2d(-34, 10, Math.toRadians(0)))
+                                .waitSeconds(5)
                                 .lineToLinearHeading(new Pose2d(55, 10, Math.toRadians(0)))
                                 .lineToConstantHeading(new Vector2d(55, 42))
                                 .build()
@@ -40,6 +41,7 @@ public class MeepMeepTesting {
                                 .lineToLinearHeading(new Pose2d(-34, 19, Math.toRadians(90)))
                                 .waitSeconds(1)
                                 .lineToLinearHeading(new Pose2d(-34, 10, Math.toRadians(0)))
+                                .waitSeconds(5)
                                 .lineToLinearHeading(new Pose2d(55, 10, Math.toRadians(0)))
                                 .lineToConstantHeading(new Vector2d(55, 35))
                                 .build()
@@ -51,10 +53,14 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(-34, 60, Math.toRadians(270)))
-                                .lineToLinearHeading(new Pose2d(-27, 30, Math.toRadians(0)))
+                                .lineToLinearHeading(new Pose2d(-34, 32, Math.toRadians(0)))
+                                .waitSeconds(1)
+                                .lineToLinearHeading(new Pose2d(-27, 32, Math.toRadians(0)))
                                 .waitSeconds(1)
                                 .lineToLinearHeading(new Pose2d(-34, 10, Math.toRadians(0)))
+                                .waitSeconds(5)
                                 .lineToLinearHeading(new Pose2d(55, 10, Math.toRadians(0)))
+                                .waitSeconds(1)
                                 .lineToConstantHeading(new Vector2d(55, 29))
                                 .build()
                 );
@@ -68,7 +74,9 @@ public class MeepMeepTesting {
                                 .lineToLinearHeading(new Pose2d(-42, -30, Math.toRadians(180)))
                                 .waitSeconds(1)
                                 .lineToLinearHeading(new Pose2d(-34, -10, Math.toRadians(0)))
+                                .waitSeconds(5)
                                 .lineToLinearHeading(new Pose2d(55, -10, Math.toRadians(0)))
+                                .waitSeconds(1)
                                 .lineToConstantHeading(new Vector2d(55, -29))
                                 .build()
                 );
@@ -82,7 +90,9 @@ public class MeepMeepTesting {
                                 .lineToLinearHeading(new Pose2d(-34, -20, Math.toRadians(270)))
                                 .waitSeconds(1)
                                 .lineToLinearHeading(new Pose2d(-34, -10, Math.toRadians(0)))
+                                .waitSeconds(5)
                                 .lineToLinearHeading(new Pose2d(55, -10, Math.toRadians(0)))
+                                .waitSeconds(1)
                                 .lineToConstantHeading(new Vector2d(55, -35))
                                 .build()
                 );
@@ -93,15 +103,19 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(-34, -60, Math.toRadians(90)))
-                                .lineToLinearHeading(new Pose2d(-27, -30, Math.toRadians(0)))
+                                .lineToLinearHeading(new Pose2d(-34, -32, Math.toRadians(0)))
+                                .waitSeconds(1)
+                                .lineToLinearHeading(new Pose2d(-27, -32, Math.toRadians(0)))
                                 .waitSeconds(1)
                                 .lineToLinearHeading(new Pose2d(-34, -10, Math.toRadians(0)))
+                                .waitSeconds(5)
                                 .lineToLinearHeading(new Pose2d(55, -10, Math.toRadians(0)))
+                                .waitSeconds(1)
                                 .lineToConstantHeading(new Vector2d(55, -42))
                                 .build()
                 );
 
-        RoadRunnerBotEntity mySeventhBot = new DefaultBotBuilder(meepMeep)
+        RoadRunnerBotEntity mySeventhBot = new DefaultBotBuilder(meepMeep) //blueClose
                 // Required: Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 // Option: Set theme. Default = ColorSchemeBlueLight()
@@ -111,6 +125,8 @@ public class MeepMeepTesting {
                                 .lineToLinearHeading(new Pose2d(27, 30, Math.toRadians(180)))
                                 .waitSeconds(1)
                                 .lineToLinearHeading(new Pose2d(55,42, Math.toRadians(0)))
+                                .waitSeconds(1)
+                                .lineToConstantHeading(new Vector2d(55, 60))
                                 .build()
                 );
 
@@ -120,9 +136,13 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(12, 60, Math.toRadians(270)))
-                                .lineToLinearHeading(new Pose2d(3, 30, Math.toRadians(180)))
+                                .lineToLinearHeading(new Pose2d(12, 32, Math.toRadians(180)))
+                                .waitSeconds(1)
+                                .lineToLinearHeading(new Pose2d(3, 32, Math.toRadians(180)))
                                 .waitSeconds(1)
                                 .lineToLinearHeading(new Pose2d(55, 29, Math.toRadians(0)))
+                                .waitSeconds(1)
+                                .lineToConstantHeading(new Vector2d(55, 60))
                                 .build()
                 );
 
@@ -135,6 +155,8 @@ public class MeepMeepTesting {
                                 .lineToLinearHeading(new Pose2d(12, 28, Math.toRadians(270)))
                                 .waitSeconds(1)
                                 .lineToLinearHeading(new Pose2d(55, 35, Math.toRadians(0)))
+                                .waitSeconds(1)
+                                .lineToConstantHeading(new Vector2d(55, 60))
                                 .build()
                 );
 
@@ -144,9 +166,12 @@ public class MeepMeepTesting {
                 .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
                 .followTrajectorySequence(drive ->
                         drive.trajectorySequenceBuilder(new Pose2d(12, -60, Math.toRadians(90)))
-                                .lineToLinearHeading(new Pose2d(3, -30, Math.toRadians(180)))
+                                .lineToLinearHeading(new Pose2d(12, -30, Math.toRadians(180)))
+                                .lineToLinearHeading(new Pose2d(3, -32, Math.toRadians(180)))
                                 .waitSeconds(1)
                                 .lineToLinearHeading(new Pose2d(55, -29, Math.toRadians(0)))
+                                .waitSeconds(1)
+                                .lineToConstantHeading(new Vector2d(55, -62))
                                 .build()
                 );
 
@@ -159,6 +184,8 @@ public class MeepMeepTesting {
                                 .lineToLinearHeading(new Pose2d(12, -27, Math.toRadians(90)))
                                 .waitSeconds(1)
                                 .lineToLinearHeading(new Pose2d(55, -35, Math.toRadians(0)))
+                                .waitSeconds(1)
+                                .lineToConstantHeading(new Vector2d(55, -62))
                                 .build()
                 );
 
@@ -171,6 +198,8 @@ public class MeepMeepTesting {
                                 .lineToLinearHeading(new Pose2d(27, -30, Math.toRadians(180)))
                                 .waitSeconds(1)
                                 .lineToLinearHeading(new Pose2d(55, -42, Math.toRadians(0)))
+                                .waitSeconds(1)
+                                .lineToConstantHeading(new Vector2d(55, -62))
                                 .build()
                 );
 
@@ -192,8 +221,5 @@ public class MeepMeepTesting {
                 .addEntity(myEleventhBot)
                 .addEntity(myTwelfthBot)
                 .start();
-
-
-
     }
 }

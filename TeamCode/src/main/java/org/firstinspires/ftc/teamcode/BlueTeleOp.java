@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Config
-@TeleOp(name="MainOpMode")
+@TeleOp(name="BlueTeleOp")
 public class BlueTeleOp extends LinearOpMode {
 
     private SampleMecanumDrive drive;
