@@ -6,6 +6,7 @@ import static org.firstinspires.ftc.teamcode.RobotConstants.LEFT_CLAW_OPEN_POSIT
 import static org.firstinspires.ftc.teamcode.RobotConstants.RIGHT_CLAW_OPEN_POSITION;
 import static org.firstinspires.ftc.teamcode.RobotConstants.LIFT_SWIVEL_UP_POSITION;
 
+
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
@@ -147,6 +148,7 @@ public class BlueClose extends LinearOpMode {
 
         // The OpenCV pipeline automatically processes frames and handles detection
         // Release resources
+        PoseStorage.currentPose = drive.getPoseEstimate();
         visionPortal.close();
     }
 
@@ -207,6 +209,7 @@ public class BlueClose extends LinearOpMode {
                 .addProcessors(aprilTagProcessor, blueDetectionProcessor)
                 .build();
     }
+
     class BlueDetectionProcessor implements VisionProcessor, CameraStreamSource {
         @Override
         public void init(int width, int height, CameraCalibration calibration) {
@@ -317,4 +320,6 @@ public class BlueClose extends LinearOpMode {
         }
     }
 }
+
+
 

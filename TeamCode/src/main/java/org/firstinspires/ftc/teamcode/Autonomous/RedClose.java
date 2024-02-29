@@ -145,6 +145,7 @@ public class RedClose extends LinearOpMode {
 
         // The OpenCV pipeline automatically processes frames and handles detection
         // Release resources
+        PoseStorage.currentPose = drive.getPoseEstimate();
         visionPortal.close();
     }
 
