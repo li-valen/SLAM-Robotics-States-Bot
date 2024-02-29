@@ -130,7 +130,7 @@ public class BlueFar extends LinearOpMode {
                     .waitSeconds(1)
                     .lineToConstantHeading(new Vector2d(55, 29))
                     .addTemporalMarker(()-> openSwivel())
-                    .build()
+                    .build();
             drive.followTrajectorySequence(leftTraj1);
         }
 
@@ -144,7 +144,7 @@ public class BlueFar extends LinearOpMode {
                     .lineToLinearHeading(new Pose2d(55, 10, Math.toRadians(0)))
                     .lineToConstantHeading(new Vector2d(55, 35))
                     .addTemporalMarker(()-> openSwivel())
-                    .build()
+                    .build();
             drive.followTrajectorySequence(midTraj1);
         }
 
@@ -158,7 +158,7 @@ public class BlueFar extends LinearOpMode {
                     .lineToLinearHeading(new Pose2d(55, 10, Math.toRadians(0)))
                     .lineToConstantHeading(new Vector2d(55, 42))
                     .addTemporalMarker(()-> openSwivel())
-                    .build()
+                    .build();
             drive.followTrajectorySequence(rightTraj1);
         }
 

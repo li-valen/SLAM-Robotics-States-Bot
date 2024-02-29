@@ -120,7 +120,7 @@ public class RedClose extends LinearOpMode {
                     .addTemporalMarker(()-> openSwivel())
                     .waitSeconds(1)
                     .lineToConstantHeading(new Vector2d(55, -62))
-                    .build()
+                    .build();
             drive.followTrajectorySequence(leftTraj1);
         }
 
@@ -133,7 +133,7 @@ public class RedClose extends LinearOpMode {
                     .addTemporalMarker(()-> openSwivel())
                     .waitSeconds(1)
                     .lineToConstantHeading(new Vector2d(55, -62))
-                    .build()
+                    .build();
             drive.followTrajectorySequence(midTraj1);
         }
 
@@ -146,7 +146,7 @@ public class RedClose extends LinearOpMode {
                     .addTemporalMarker(()-> openSwivel())
                     .waitSeconds(1)
                     .lineToConstantHeading(new Vector2d(55, -62))
-                    .build()
+                    .build();
             drive.followTrajectorySequence(rightTraj1);
         }
 

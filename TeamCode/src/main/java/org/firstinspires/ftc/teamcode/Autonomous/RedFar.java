@@ -125,7 +125,7 @@ public class RedFar extends LinearOpMode {
                     .waitSeconds(1)
                     .lineToConstantHeading(new Vector2d(55, -29))
                     .addTemporalMarker(()-> openSwivel())
-                    .build()
+                    .build();
             drive.followTrajectorySequence(leftTraj1);
         }
 
@@ -157,7 +157,7 @@ public class RedFar extends LinearOpMode {
                     .waitSeconds(1)
                     .lineToConstantHeading(new Vector2d(55, -42))
                     .addTemporalMarker(()-> openSwivel())
-                    .build()
+                    .build();
             drive.followTrajectorySequence(rightTraj1);
         }
 
