@@ -104,6 +104,11 @@ public class BlueTeleOp extends LinearOpMode {
                 }
             }
 
+            if(gamepad2.dpad_up){
+                linearLift(1000);
+            }
+
+
             //--------------------------------------------------------------
 
             drive.setWeightedDrivePower(
