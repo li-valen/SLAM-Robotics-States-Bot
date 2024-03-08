@@ -18,6 +18,8 @@ import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorGroup;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.Autonomous.PoseStorage;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
@@ -38,25 +40,30 @@ public class RedTeleOp extends LinearOpMode {
     private double leftTrigger, rightTrigger;
     private double driveSpeed = 0.75;
 
-    private MotorGroup linearLift;
     private Motor linearLeft, linearRight;
+    private MotorGroup linearLift;
     @Override
     public void runOpMode() throws InterruptedException {
         driverController1 = new GamepadEx(gamepad1);
         driverController2 = new GamepadEx(gamepad2);
 
-        linearLeft = hardwareMap.get(Motor.class, "vsLeft");
-        linearRight = hardwareMap.get(Motor.class, "vsLeft");
+        linearLeft = new Motor(hardwareMap, "vsLeft");
+        linearRight = new Motor(hardwareMap, "vsRight");
 
+        linearLift = new MotorGroup(linearLeft, linearRight);
+        linearLift.resetEncoder();
+
+
+        linearRight.setInverted(true);
         List<Integer> lastTrackingEncPositions = new ArrayList<>();
         List<Integer> lastTrackingEncVels = new ArrayList<>();
 
-        linearLift = new MotorGroup(linearLeft, linearRight);
         StandardTrackingWheelLocalizer myLocalizer = new StandardTrackingWheelLocalizer(hardwareMap, lastTrackingEncPositions, lastTrackingEncVels);
         myLocalizer.setPoseEstimate(PoseStorage.currentPose);
         Pose2d myPose = myLocalizer.getPoseEstimate();
 
         telemetry.addData("driveSpeed", driveSpeed);
+
 
         ButtonReader buttonReaderA = new ButtonReader(driverController1, GamepadKeys.Button.A);
         ButtonReader buttonReaderB = new ButtonReader(driverController1, GamepadKeys.Button.B);
@@ -136,8 +143,9 @@ public class RedTeleOp extends LinearOpMode {
 
     private void linearLift(int position){
         linearLift.setTargetPosition(position);
-        while(linearLift.getCurrentPosition() != linearLift.motor.getTargetPosition()){
-            linearLift.set(1);
+        while(linearRight.motor.getCurrentPosition() != linearRight.motor.getTargetPosition()){
+            linearRight.set(1);
+            linearLeft.set(1);
         }
 
     }

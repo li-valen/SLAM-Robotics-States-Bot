@@ -18,6 +18,7 @@ import com.arcrobotics.ftclib.hardware.motors.Motor;
 import com.arcrobotics.ftclib.hardware.motors.MotorGroup;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 
 import org.firstinspires.ftc.teamcode.Autonomous.PoseStorage;
@@ -39,21 +40,19 @@ public class BlueTeleOp extends LinearOpMode {
     private double leftTrigger, rightTrigger;
     private double driveSpeed = 0.75;
 
-    private MotorGroup linearLift;
-    private Motor linearLeft, linearRight;
+    private DcMotor linearLeft, linearRight;
     @Override
     public void runOpMode() throws InterruptedException {
         driverController1 = new GamepadEx(gamepad1);
         driverController2 = new GamepadEx(gamepad2);
 
-        linearLeft = hardwareMap.get(Motor.class, "vsLeft");
-        linearRight = hardwareMap.get(Motor.class, "vsLeft");
+        linearLeft = hardwareMap.get(DcMotor.class, "vsLeft");
+        linearRight = hardwareMap.get(DcMotor.class, "vsLeft");
 
 
         List<Integer> lastTrackingEncPositions = new ArrayList<>();
         List<Integer> lastTrackingEncVels = new ArrayList<>();
 
-        linearLift = new MotorGroup(linearLeft, linearRight);
         StandardTrackingWheelLocalizer myLocalizer = new StandardTrackingWheelLocalizer(hardwareMap, lastTrackingEncPositions, lastTrackingEncVels);
         myLocalizer.setPoseEstimate(PoseStorage.currentPose);
         Pose2d myPose = myLocalizer.getPoseEstimate();
@@ -138,9 +137,11 @@ public class BlueTeleOp extends LinearOpMode {
     }
 
     private void linearLift(int position){
-        linearLift.setTargetPosition(position);
-        while(linearLift.getCurrentPosition() != linearLift.motor.getTargetPosition()){
-            linearLift.set(1);
+        linearLeft.setTargetPosition(position);
+        linearRight.setTargetPosition(position);
+        while(linearRight.getCurrentPosition() != linearRight.getTargetPosition()){
+            linearRight.setPower(1);
+            linearLeft.setPower(1);
         }
 
     }
