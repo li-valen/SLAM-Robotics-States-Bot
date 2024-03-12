@@ -49,12 +49,11 @@ public class MainTeleOp extends LinearOpMode {
 
         linearLeft = new Motor(hardwareMap, "vsLeft");
         linearRight = new Motor(hardwareMap, "vsRight");
-
         linearLift = new MotorGroup(linearLeft, linearRight);
+        linearLift.setInverted(true);
         linearLift.resetEncoder();
 
 
-        linearRight.setInverted(true);
         List<Integer> lastTrackingEncPositions = new ArrayList<>();
         List<Integer> lastTrackingEncVels = new ArrayList<>();
 
@@ -63,6 +62,9 @@ public class MainTeleOp extends LinearOpMode {
         Pose2d myPose = myLocalizer.getPoseEstimate();
 
         telemetry.addData("driveSpeed", driveSpeed);
+        telemetry.addData("currentLeft", linearLeft.motor.getCurrentPosition());
+        telemetry.addData("currentRight", linearRight.motor.getCurrentPosition());
+
 
 
         ButtonReader buttonReaderA = new ButtonReader(driverController1, GamepadKeys.Button.A);
@@ -80,8 +82,8 @@ public class MainTeleOp extends LinearOpMode {
         TrajectorySequence redHang = drive.trajectorySequenceBuilder(myPose)
                 .lineToLinearHeading(new Pose2d(-23.5, -59.5, Math.toRadians(0)))
                 .waitSeconds(1)
-                .addTemporalMarker(() -> linearLift(1000))
-                .addTemporalMarker(() -> linearLift(0))
+                .addTemporalMarker(() -> linearLifts(1000))
+                .addTemporalMarker(() -> linearLifts(0))
                 .build();
 
         waitForStart();
@@ -104,8 +106,13 @@ public class MainTeleOp extends LinearOpMode {
             }
 
             if(gamepad2.dpad_up){
-                linearLift(1000);
+                linearLift.set(1);
             }
+
+            if(gamepad2.dpad_down){
+                linearLift.set(-1);
+            }
+
 
             //--------------------------------------------------------------
 
@@ -135,12 +142,12 @@ public class MainTeleOp extends LinearOpMode {
         driveSpeed = 0.25;
     }
 
-    private void linearLift(int position){
+    private void linearLifts(int position){
         linearLift.setTargetPosition(position);
         while(linearRight.motor.getCurrentPosition() != linearRight.motor.getTargetPosition()){
-            linearRight.set(1);
-            linearLeft.set(1);
+            linearLift.set(1);
         }
+        linearLift.set(0);
 
     }
 }
