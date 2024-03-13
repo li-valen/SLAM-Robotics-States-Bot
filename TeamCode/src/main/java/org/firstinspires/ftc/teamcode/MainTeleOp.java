@@ -101,10 +101,11 @@ public class MainTeleOp extends LinearOpMode {
                 closeClaw();
             }
 
-            if (gamepad2.x){
+            if (gamepad1.x){
                 slowDrive();
             }
 
+            linearLift.set(0);
             if(gamepad2.dpad_up){
                 linearLift.set(1);
             }
@@ -139,15 +140,19 @@ public class MainTeleOp extends LinearOpMode {
     }
 
     private void slowDrive(){
-        driveSpeed = 0.25;
+        if(driveSpeed == 0.25){
+            driveSpeed = 0.75;
+        } else {
+            driveSpeed = 0.25;
+        }
     }
 
     private void linearLifts(int position){
         linearLift.setTargetPosition(position);
-        while(linearRight.motor.getCurrentPosition() != linearRight.motor.getTargetPosition()){
-            linearLift.set(1);
-        }
-        linearLift.set(0);
+//        while(linearRight.motor.getCurrentPosition() != linearRight.motor.getTargetPosition()){
+//            linearLift.set(1);
+//        }
+//        linearLift.set(0);
 
     }
 }
