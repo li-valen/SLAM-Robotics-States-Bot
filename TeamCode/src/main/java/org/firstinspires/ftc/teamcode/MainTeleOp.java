@@ -51,8 +51,8 @@ public class MainTeleOp extends LinearOpMode {
         linearRight = new Motor(hardwareMap, "vsRight");
         linearLift = new MotorGroup(linearLeft, linearRight);
         linearLift.setInverted(true);
-        linearLift.resetEncoder();
-
+        linearLeft.resetEncoder();
+        linearRight.resetEncoder();
 
         List<Integer> lastTrackingEncPositions = new ArrayList<>();
         List<Integer> lastTrackingEncVels = new ArrayList<>();
@@ -82,14 +82,14 @@ public class MainTeleOp extends LinearOpMode {
         TrajectorySequence redHang = drive.trajectorySequenceBuilder(myPose)
                 .lineToLinearHeading(new Pose2d(-23.5, -59.5, Math.toRadians(0)))
                 .waitSeconds(1)
-                .addTemporalMarker(() -> linearLifts(1000))
+                .addTemporalMarker(() -> linearLifts(13500))
                 .addTemporalMarker(() -> linearLifts(0))
                 .build();
 
         waitForStart();
         while(opModeIsActive()) {
             telemetry.update();
-
+            linearLift.set(0);
             leftTrigger = driverController1.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER);
             rightTrigger = driverController1.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER);
 
@@ -105,7 +105,7 @@ public class MainTeleOp extends LinearOpMode {
                 slowDrive();
             }
 
-            linearLift.set(0);
+
             if(gamepad2.dpad_up){
                 linearLift.set(1);
             }
@@ -149,10 +149,5 @@ public class MainTeleOp extends LinearOpMode {
 
     private void linearLifts(int position){
         linearLift.setTargetPosition(position);
-//        while(linearRight.motor.getCurrentPosition() != linearRight.motor.getTargetPosition()){
-//            linearLift.set(1);
-//        }
-//        linearLift.set(0);
-
     }
 }
